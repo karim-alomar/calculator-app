@@ -48,10 +48,18 @@
 .calc-buttons .calc-button:not(:last-child){
     margin-right: 10px;
 }
-
+.calc-button:hover{
+    border-color: #fff;
+}
 .main-buttons{
     color: #C16F74;
 }
+.main-buttons:hover {
+    border-color: #C16F74;
+}
 .second-buttons{
     color: #32C4AB;
+}
+.second-buttons:hover{
+    border-color: #32C4AB;
 }
