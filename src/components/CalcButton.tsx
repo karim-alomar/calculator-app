@@ -2,7 +2,7 @@ import { MouseEventHandler, ReactNode } from "react";
 
 interface btnType {
   btn: string | number | ReactNode;
-  btnValue: string | number;
+  btnValue?: string | number;
   calcFun: MouseEventHandler<HTMLButtonElement>;
   classBtnType?: string;
 }

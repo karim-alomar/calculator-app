@@ -7,6 +7,7 @@ import {
   resetValue,
   handelEval,
   removeValue,
+  EquelValue,
 } from "./redux/reducers/calcolaterReducers";
 import { changeMode } from "./redux/reducers/modeReducer";
 import { Calcolater } from "./style/Calcolater.style";
@@ -23,11 +24,7 @@ function App() {
     ) {
       return false;
     }
-
-    if (!ops.includes(num)) {
-      dispatch(handelEval(num));
-    }
-
+    dispatch(handelEval(num));
     dispatch(updateCalc(num));
   };
   return (
@@ -165,8 +162,7 @@ function App() {
               />
               <CalcButton
                 btn="="
-                btnValue="="
-                calcFun={() => handelUpdateCalc("=")}
+                calcFun={() => dispatch(EquelValue())}
                 classBtnType="main-buttons"
               />
             </div>
