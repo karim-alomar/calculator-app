@@ -21,9 +21,13 @@ export const calcolaterSlice = createSlice({
       state.value = "";
       state.result = "";
     },
+    removeValue: (state) => {
+      state.value = state.value.slice(0, -1);
+    },
   },
 });
 
-export const { updateCalc, resetValue, handelEval } = calcolaterSlice.actions;
+export const { updateCalc, resetValue, handelEval, removeValue } =
+  calcolaterSlice.actions;
 
 export const calcolaterReducer = calcolaterSlice.reducer;

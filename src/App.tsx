@@ -6,6 +6,7 @@ import {
   updateCalc,
   resetValue,
   handelEval,
+  removeValue,
 } from "./redux/reducers/calcolaterReducers";
 import { changeMode } from "./redux/reducers/modeReducer";
 import { Calcolater } from "./style/Calcolater.style";
@@ -150,7 +151,7 @@ function App() {
               <CalcButton
                 btn={<i className="fa-solid fa-arrow-rotate-left"></i>}
                 btnValue=""
-                calcFun={() => false}
+                calcFun={() => dispatch(removeValue())}
               />
               <CalcButton
                 btn={0}
