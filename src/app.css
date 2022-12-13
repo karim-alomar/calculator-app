@@ -1,3 +1,6 @@
+body{
+    background-color: #EFEFEF;
+}
 .container{
     max-width: 1140px;
     width: 100%;
@@ -14,6 +17,44 @@
     margin: auto;
     box-shadow: -8px 3px 12px 0px rgba(0, 0, 0, 0.15);
     overflow: hidden;
+    transition: all .2s;
+}
+.calc-container.active{
+    background-color: #fff;
+}
+.calc-container.active .buttons-mode-container{
+    background-color: #F9F9F9;
+}
+.calc-container.active .buttons-mode-container .button-mode{
+    color: #1a1a1a;
+}
+.buttons-mode-container{
+    margin: 20px auto 10px;
+    background-color: #272626;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80px;
+    padding: 5px 0;
+    border-radius: 20px;
+}
+.button-mode{
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    opacity: .5;
+    transition: all .2s;
+}
+.button-mode.active{
+    opacity: 1;
+}
+.button-mode:hover{
+    border: none;
+    opacity: 1;
+}
+.calc-container.active .result{
+    color: #1a1a1a;
+    transition: all .2s;
 }
 .result{
     position: relative;
@@ -21,10 +62,21 @@
     font-size: 30px;
     font-weight: bold;
 }
+.calc-container.active .calc-container-buttons{
+    background-color: #F9F9F9;
+}
 .calc-container-buttons{
     padding: 20px;
     background-color: #272626;
     border-radius: 20px 20px 0 0;
+    transition: all .2s;
+}
+.calc-container.active .calc-container-buttons .calc-button{
+    background-color: #F7F7F7;
+    color: #1a1a1a;
+}
+.calc-container.active .calc-container-buttons .calc-button:hover {
+    border: 1px solid #1a1a1a;
 }
 .calc-buttons {
     display: flex;
@@ -44,6 +96,7 @@
     box-shadow: -8px 3px 12px 0px rgba(0, 0, 0, 0.15);
     font-weight: bolder;
     font-size: 1.2rem;
+    transition: all .2s;
 }
 
 .calc-buttons .calc-button:not(:last-child){
@@ -53,14 +106,14 @@
     border-color: #fff;
 }
 .main-buttons{
-    color: #C16F74;
+    color: #C16F74 !important;
 }
 .main-buttons:hover {
-    border-color: #C16F74;
+    border-color: #C16F74 !important;
 }
 .second-buttons{
-    color: #32C4AB;
+    color: #32C4AB !important;
 }
 .second-buttons:hover{
-    border-color: #32C4AB;
+    border-color: #32C4AB!important;
 }

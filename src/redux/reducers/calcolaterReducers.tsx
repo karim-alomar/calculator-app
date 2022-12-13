@@ -16,6 +16,7 @@ export const calcolaterSlice = createSlice({
     },
     resetValue: (state) => {
       state.value = 0;
+      state.lastValue = 0;
     },
     getLastValue: (state, action: PayloadAction<number>) => {
       state.lastValue = action.payload;

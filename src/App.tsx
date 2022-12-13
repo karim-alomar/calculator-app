@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import "./app.css";
 import { CalcButton } from "./components/CalcButton";
+import { ModeButton } from "./components/ModeButton";
 import { useAppSelector, useAppDispatch } from "./redux/hook";
 import {
   deleteValue,
   getLastValue,
   incrementByAmount,
   resetValue,
-} from "./redux/reducers";
-const buttons = [
-  ["AC", "!", "%", "/"],
-  [7, 8, 9, "X"],
-  [4, 5, 6, "-"],
-  [1, 2, 3, "+"],
-  ["<-", 0, ".", "="],
-];
+} from "./redux/reducers/calcolaterReducers";
+import { changeMode } from "./redux/reducers/modeReducer";
 function App() {
   const { value } = useAppSelector((state) => state.calc);
+  const { isDark } = useAppSelector((state) => state.mode);
   const dispatch = useAppDispatch();
   const handelSum = (num: number) => {
     dispatch(incrementByAmount(num));
@@ -24,7 +20,19 @@ function App() {
   };
   return (
     <div className="container">
-      <div className="calc-container">
+      <div className={`calc-container ${!isDark && "active"}`}>
+        <div className="buttons-mode-container">
+          <ModeButton
+            isDark={!isDark}
+            handelMode={() => dispatch(changeMode(false))}
+            iconElement={<i className="fa-solid fa-sun"></i>}
+          />
+          <ModeButton
+            isDark={isDark}
+            handelMode={() => dispatch(changeMode(true))}
+            iconElement={<i className="fa-solid fa-moon"></i>}
+          />
+        </div>
         <div className="result">
           <span>{value}</span>
         </div>
