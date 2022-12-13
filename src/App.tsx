@@ -10,6 +10,7 @@ import {
   resetValue,
 } from "./redux/reducers/calcolaterReducers";
 import { changeMode } from "./redux/reducers/modeReducer";
+import { Calcolater } from "./style/Calcolater.style";
 function App() {
   const { value } = useAppSelector((state) => state.calc);
   const { isDark } = useAppSelector((state) => state.mode);
@@ -20,7 +21,7 @@ function App() {
   };
   return (
     <div className="container">
-      <div className={`calc-container ${!isDark && "active"}`}>
+      <Calcolater isDark={isDark}>
         <div className="buttons-mode-container">
           <ModeButton
             isDark={!isDark}
@@ -112,7 +113,7 @@ function App() {
             />
           </div>
         </div>
-      </div>
+      </Calcolater>
     </div>
   );
 }
