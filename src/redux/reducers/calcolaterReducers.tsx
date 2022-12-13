@@ -34,7 +34,7 @@ export const calcolaterSlice = createSlice({
     },
     plusMinusValue: (state) => {
       if (state.value != "") {
-        state.value = (parseInt(state.value) * -1).toString();
+        state.value = (parseFloat(state.value) * -1).toString();
         state.result = state.value;
       }
     },
