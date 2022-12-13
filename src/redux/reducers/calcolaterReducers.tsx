@@ -38,6 +38,11 @@ export const calcolaterSlice = createSlice({
         state.result = state.value;
       }
     },
+    percentage: (state) => {
+      if (state.value != "") {
+        state.value = (parseFloat(state.value) / 100).toString();
+      }
+    },
   },
 });
 
@@ -48,6 +53,7 @@ export const {
   removeValue,
   EquelValue,
   plusMinusValue,
+  percentage,
 } = calcolaterSlice.actions;
 
 export const calcolaterReducer = calcolaterSlice.reducer;

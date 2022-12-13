@@ -9,6 +9,7 @@ import {
   removeValue,
   EquelValue,
   plusMinusValue,
+  percentage,
 } from "./redux/reducers/calcolaterReducers";
 import { changeMode } from "./redux/reducers/modeReducer";
 import { Calcolater } from "./style/Calcolater.style";
@@ -70,7 +71,7 @@ function App() {
               <CalcButton
                 btn="%"
                 btnValue="%"
-                calcFun={() => handelUpdateCalc("%")}
+                calcFun={() => dispatch(percentage())}
                 classBtnType="second-buttons"
               />
               <CalcButton
