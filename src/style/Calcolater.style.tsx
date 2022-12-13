@@ -43,7 +43,15 @@ export const Calcolater = styled.div`
     font-size: 30px;
     font-weight: bold;
     display: flex;
+    flex-direction: column;
     justify-content: end;
+    align-items: flex-end;
+    .small {
+      color: #ffffff33;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 10px;
+    }
   }
   .calc-container-buttons {
     padding: 20px;

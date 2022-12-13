@@ -1,22 +1,33 @@
+import { useState } from "react";
 import { CalcButton } from "./components/CalcButton";
 import { ModeButton } from "./components/ModeButton";
 import { useAppSelector, useAppDispatch } from "./redux/hook";
 import {
-  deleteValue,
-  getLastValue,
-  incrementByAmount,
+  updateCalc,
   resetValue,
+  handelEval,
 } from "./redux/reducers/calcolaterReducers";
 import { changeMode } from "./redux/reducers/modeReducer";
 import { Calcolater } from "./style/Calcolater.style";
 import { GlobalStyle } from "./style/GlobalStyle";
 function App() {
-  const { value } = useAppSelector((state) => state.calc);
+  const { value, result } = useAppSelector((state) => state.calc);
   const { isDark } = useAppSelector((state) => state.mode);
+  const ops = ["/", "*", "+", "-", ".", "%", "="];
   const dispatch = useAppDispatch();
-  const handelSum = (num: number) => {
-    dispatch(incrementByAmount(num));
-    dispatch(getLastValue(num));
+  const handelUpdateCalc = (num: string) => {
+    if (
+      (ops.includes(num) && value == "") ||
+      (ops.includes(num) && ops.includes(value.slice(-1)))
+    ) {
+      return false;
+    }
+
+    if (!ops.includes(num)) {
+      dispatch(handelEval(num));
+    }
+
+    dispatch(updateCalc(num));
   };
   return (
     <>
@@ -36,7 +47,8 @@ function App() {
             />
           </div>
           <div className="result">
-            <span>{value}</span>
+            <span className="small">({result || "0"})</span>
+            <span>{value || "0"}</span>
           </div>
           <div className="calc-container-buttons">
             <div className="calc-buttons">
@@ -49,52 +61,88 @@ function App() {
               <CalcButton
                 btn="!"
                 btnValue=""
-                calcFun={() => handelSum(9)}
+                calcFun={() => handelUpdateCalc("")}
                 classBtnType="second-buttons"
               />
               <CalcButton
                 btn="%"
                 btnValue="%"
-                calcFun={() => handelSum(9)}
+                calcFun={() => handelUpdateCalc("%")}
                 classBtnType="second-buttons"
               />
               <CalcButton
                 btn="/"
                 btnValue="/"
-                calcFun={() => handelSum(9)}
+                calcFun={() => handelUpdateCalc("/")}
                 classBtnType="main-buttons"
               />
             </div>
             <div className="calc-buttons">
-              <CalcButton btn={7} btnValue={7} calcFun={() => handelSum(7)} />
-              <CalcButton btn={8} btnValue={8} calcFun={() => handelSum(8)} />
-              <CalcButton btn={9} btnValue={9} calcFun={() => handelSum(9)} />
               <CalcButton
-                btn="X"
-                btnValue="x"
-                calcFun={() => handelSum(9)}
+                btn={7}
+                btnValue={7}
+                calcFun={() => handelUpdateCalc("7")}
+              />
+              <CalcButton
+                btn={8}
+                btnValue={8}
+                calcFun={() => handelUpdateCalc("8")}
+              />
+              <CalcButton
+                btn={9}
+                btnValue={9}
+                calcFun={() => handelUpdateCalc("9")}
+              />
+              <CalcButton
+                btn="*"
+                btnValue="*"
+                calcFun={() => handelUpdateCalc("*")}
                 classBtnType="main-buttons"
               />
             </div>
             <div className="calc-buttons">
-              <CalcButton btn={4} btnValue={4} calcFun={() => handelSum(4)} />
-              <CalcButton btn={5} btnValue={5} calcFun={() => handelSum(5)} />
-              <CalcButton btn={6} btnValue={6} calcFun={() => handelSum(6)} />
+              <CalcButton
+                btn={4}
+                btnValue={4}
+                calcFun={() => handelUpdateCalc("4")}
+              />
+              <CalcButton
+                btn={5}
+                btnValue={5}
+                calcFun={() => handelUpdateCalc("5")}
+              />
+              <CalcButton
+                btn={6}
+                btnValue={6}
+                calcFun={() => handelUpdateCalc("6")}
+              />
               <CalcButton
                 btn="-"
                 btnValue="-"
-                calcFun={() => handelSum(9)}
+                calcFun={() => handelUpdateCalc("-")}
                 classBtnType="main-buttons"
               />
             </div>
             <div className="calc-buttons">
-              <CalcButton btn={1} btnValue={1} calcFun={() => handelSum(1)} />
-              <CalcButton btn={2} btnValue={2} calcFun={() => handelSum(2)} />
-              <CalcButton btn={3} btnValue={3} calcFun={() => handelSum(3)} />
+              <CalcButton
+                btn={1}
+                btnValue={1}
+                calcFun={() => handelUpdateCalc("1")}
+              />
+              <CalcButton
+                btn={2}
+                btnValue={2}
+                calcFun={() => handelUpdateCalc("2")}
+              />
+              <CalcButton
+                btn={3}
+                btnValue={3}
+                calcFun={() => handelUpdateCalc("3")}
+              />
               <CalcButton
                 btn="+"
                 btnValue="+"
-                calcFun={() => handelSum(9)}
+                calcFun={() => handelUpdateCalc("+")}
                 classBtnType="main-buttons"
               />
             </div>
@@ -102,14 +150,22 @@ function App() {
               <CalcButton
                 btn={<i className="fa-solid fa-arrow-rotate-left"></i>}
                 btnValue=""
-                calcFun={() => dispatch(deleteValue())}
+                calcFun={() => false}
               />
-              <CalcButton btn={0} btnValue={0} calcFun={() => handelSum(9)} />
-              <CalcButton btn="." btnValue="." calcFun={() => handelSum(9)} />
+              <CalcButton
+                btn={0}
+                btnValue={0}
+                calcFun={() => handelUpdateCalc("0")}
+              />
+              <CalcButton
+                btn="."
+                btnValue="."
+                calcFun={() => handelUpdateCalc(".")}
+              />
               <CalcButton
                 btn="="
                 btnValue="="
-                calcFun={() => handelSum(9)}
+                calcFun={() => handelUpdateCalc("=")}
                 classBtnType="main-buttons"
               />
             </div>
