@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CalcButton } from "./components/CalcButton";
 import { ModeButton } from "./components/ModeButton";
 import { useAppSelector, useAppDispatch } from "./redux/hook";
@@ -8,6 +8,7 @@ import {
   handelEval,
   removeValue,
   EquelValue,
+  plusMinusValue,
 } from "./redux/reducers/calcolaterReducers";
 import { changeMode } from "./redux/reducers/modeReducer";
 import { Calcolater } from "./style/Calcolater.style";
@@ -27,6 +28,10 @@ function App() {
     dispatch(handelEval(num));
     dispatch(updateCalc(num));
   };
+  // useEffect(() => {
+  //   console.log(dispatch(plusMinusValue()));
+  //   console.log(value);
+  // }, [value]);
   return (
     <>
       <GlobalStyle isDark={isDark} />
@@ -57,9 +62,9 @@ function App() {
                 classBtnType="second-buttons"
               />
               <CalcButton
-                btn="!"
+                btn={<i className="fa-solid fa-plus-minus"></i>}
                 btnValue=""
-                calcFun={() => handelUpdateCalc("")}
+                calcFun={() => dispatch(plusMinusValue())}
                 classBtnType="second-buttons"
               />
               <CalcButton

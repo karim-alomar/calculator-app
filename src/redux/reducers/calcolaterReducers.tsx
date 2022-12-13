@@ -27,14 +27,27 @@ export const calcolaterSlice = createSlice({
     },
     removeValue: (state) => {
       state.value = state.value.slice(0, -1);
+      state.result = state.value;
     },
     EquelValue: (state) => {
       state.value = eval(state.value).toString();
     },
+    plusMinusValue: (state) => {
+      if (state.value != "") {
+        state.value = (parseInt(state.value) * -1).toString();
+        state.result = state.value;
+      }
+    },
   },
 });
 
-export const { updateCalc, resetValue, handelEval, removeValue, EquelValue } =
-  calcolaterSlice.actions;
+export const {
+  updateCalc,
+  resetValue,
+  handelEval,
+  removeValue,
+  EquelValue,
+  plusMinusValue,
+} = calcolaterSlice.actions;
 
 export const calcolaterReducer = calcolaterSlice.reducer;
