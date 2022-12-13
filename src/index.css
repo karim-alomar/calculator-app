@@ -65,6 +65,6 @@ button:hover {
 }
 @media (max-width:425px) {
   .container{
-    height: 80vh;
+    height: 85vh;
   }
 }
