@@ -47,7 +47,7 @@ export const Calcolater = styled.div`
     justify-content: end;
     align-items: flex-end;
     .small {
-      color: #ffffff33;
+      color: ${({ isDark }) => (isDark ? "#ffffff33" : "#32323233")};
       font-size: 15px;
       display: block;
       margin-bottom: 10px;
