@@ -37,7 +37,6 @@ function App() {
     <>
       <GlobalStyle isDark={isDark} />
       <div className="container">
-        
         <Calcolater isDark={isDark}>
           <div className="buttons-mode-container">
             <ModeButton
