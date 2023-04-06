@@ -35,9 +35,6 @@ function App() {
   // }, [value]);
   return (
     <>
-
-
-    
       <GlobalStyle isDark={isDark} />
       <div className="container">
         <Calcolater isDark={isDark}>
